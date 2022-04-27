@@ -1,4 +1,4 @@
-package com.AprendizagemSemanal.Aprendizagem.controller;
+package com.HelloWorld.Hello.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
