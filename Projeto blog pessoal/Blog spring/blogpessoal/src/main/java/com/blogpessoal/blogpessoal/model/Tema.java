@@ -13,10 +13,6 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-
-
-
 @Entity
 @Table(name = "TB_Tema")
 public class Tema {
