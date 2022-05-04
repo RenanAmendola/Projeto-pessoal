@@ -24,7 +24,7 @@ import com.Farmaciadojoao.model.Categoria;
 import com.Farmaciadojoao.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/farmacia_jaoC")
 @CrossOrigin("*")
 public class CategoriaController {
 
@@ -46,7 +46,7 @@ public class CategoriaController {
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 		
-@GetMapping("/Categoria/{descricao}")
+@GetMapping("/categoria/{descricao}")
 public ResponseEntity<List<Categoria>> getByDescricao(@PathVariable String descricao){
 	return ResponseEntity.ok(categoriaRe.findAllByDescricaoContainingIgnoreCase(descricao));
 
