@@ -54,18 +54,28 @@ public class ProdutoController {
 	
 	
 @PostMapping
-	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto){
-	return ResponseEntity.status(HttpStatus.CREATED)
-			.body(proRe.save(produto));
+	public ResponseEntity<Produto> postProduto(@Valid @RequestBody Produto produto){
+		if(proRe.existsById(produto.getCategoria().getId()))
+			return ResponseEntity.status(HttpStatus.CREATED).body(proRe.save(produto));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 }
+
+
+
+
+
+
 	
 @PutMapping
-public ResponseEntity<Produto> put(@Valid @RequestBody Produto produto){
-		return proRe.findById(produto.getId())
-				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-						.body(proRe.save(produto)))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-				}
+public ResponseEntity<Produto> putProduto (@Valid @RequestBody Produto produto){
+	if (proRe.existsById(produto.getId())) {
+		if (proRe.existsById(produto.getCategoria().getId()))
+			return ResponseEntity.status(HttpStatus.OK).body(proRe.save(produto));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+}
+
 
 
 @ResponseStatus(HttpStatus.NO_CONTENT)

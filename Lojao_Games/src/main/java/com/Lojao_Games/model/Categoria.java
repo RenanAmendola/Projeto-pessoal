@@ -31,16 +31,37 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List <Produto> produto;
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
+	}
 	
-	
-	
-
-
-
-
-
-
-
 
 
 }
