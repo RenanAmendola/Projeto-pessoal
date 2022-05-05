@@ -1,4 +1,4 @@
-package com.Farmaciadojoao.controller;
+package com.Lojao_Games.Controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,74 +20,72 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.Farmaciadojoao.model.Produto;
-import com.Farmaciadojoao.repository.ProdutoRepository;
-
-
-
+import com.Lojao_Games.model.Produto;
+import com.Lojao_Games.repository.ProdutoRepository;
 
 @RestController
-@RequestMapping("/farmacia_jao")
+@RequestMapping("/Lojao_Games")
 @CrossOrigin("*")
 public class ProdutoController {
 	
+	
 	@Autowired
-	private ProdutoRepository produtoRe;
-
+	private ProdutoRepository proRe;
+	
 	@GetMapping
 	public ResponseEntity<List<Produto>>GetAll(){
 		
-		return ResponseEntity.ok(produtoRe.findAll());
+		return ResponseEntity.ok(proRe.findAll());
+	}
 
-}
-	
+
 @GetMapping("/{id}")
-	public ResponseEntity<Produto> getById(@PathVariable Long id){ 
-		return produtoRe.findById(id)
+	public ResponseEntity<Produto> getbyId(@PathVariable Long id){
+		return proRe.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	}
-		
-
-@GetMapping("/produto/{nome}")
-public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome){
-	return ResponseEntity.ok(produtoRe.findAllByNomeContainingIgnoreCase(nome));
-
-
 }
-
+	
+	
+@GetMapping("/Produto/{nome}")
+	public ResponseEntity<List<Produto>>getByNome(@PathVariable String nome){
+		return ResponseEntity.ok(proRe.findAllByNomeContainingIgnoreCase(nome));
+}
+	
+	
 @PostMapping
-public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto){
+	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto){
 	return ResponseEntity.status(HttpStatus.CREATED)
-			.body(produtoRe.save(produto));
-
+			.body(proRe.save(produto));
 }
-
+	
 @PutMapping
 public ResponseEntity<Produto> put(@Valid @RequestBody Produto produto){
-	return produtoRe.findById(produto.getId())
-			.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(produtoRe.save(produto)))
-			.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-			
-}
+		return proRe.findById(produto.getId())
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
+						.body(proRe.save(produto)))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+				}
 
 
 @ResponseStatus(HttpStatus.NO_CONTENT)
 @DeleteMapping("/{id}")
 public void delete(@PathVariable long id) {
-	Optional<Produto> produto = produtoRe.findById(id);
-	
-	if (produto.isEmpty())
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-	
-	produtoRe.deleteById(id);
-	
-	
-}
+	Optional<Produto> produto = proRe.findById(id);
 
+		if(produto.isEmpty())
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		
+		proRe.deleteById(id);
 
 
 
 }
 
+
+
+
+
+
+
+}
