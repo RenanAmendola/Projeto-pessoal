@@ -27,16 +27,18 @@ public class Produto {
 	private String nome;	
 	
 	@NotNull
-	private double valor;
+	private String valor;
 	
-	@NotNull
-	@Size(max = 5)
+
 	private String classificacao;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Usuario usuario;
 	
 
 	public long getId() {
@@ -55,11 +57,11 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public double getValor() {
+	public String getValor() {
 		return valor;
 	}
 
-	public void setValor(double valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 
@@ -77,6 +79,14 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
