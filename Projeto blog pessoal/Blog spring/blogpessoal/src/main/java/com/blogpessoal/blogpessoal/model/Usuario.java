@@ -31,6 +31,9 @@ private String nome;
 private String foto;
 
 @NotNull
+private String tipo = "Common";
+
+@NotNull
 @Email
 private String usuario;
 
@@ -43,6 +46,14 @@ private String senha;
 private List<Postagem> postagem;
 
 
+
+public String getTipo() {
+	return tipo;
+}
+
+public void setTipo(String tipo) {
+	this.tipo = tipo;
+}
 
 public Long getId() {
 	return id;
