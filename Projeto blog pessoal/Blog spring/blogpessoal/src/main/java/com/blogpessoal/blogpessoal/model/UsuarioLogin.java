@@ -5,10 +5,30 @@ public class UsuarioLogin {
 	private Long id;
 	private String nome;
 	private String usuario;
+	private String senha;
 	private String tipo;
 	private String foto;
-	private String senha;
 	private String token;
+	
+	
+	
+	public UsuarioLogin(Long id, String nome, String usuario, String senha, String tipo, String foto, String token) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.tipo = tipo;
+		this.foto = foto;
+		this.token = token;
+	}	
+	
+	
+	public UsuarioLogin() {
+		super();
+	}
+
+
 	public Long getId() {
 		return id;
 	}

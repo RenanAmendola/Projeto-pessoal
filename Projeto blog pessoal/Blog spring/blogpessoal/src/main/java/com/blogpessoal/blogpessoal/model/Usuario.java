@@ -27,12 +27,6 @@ private Long id;
 @NotNull
 private String nome;
 
-@Size(max = 5000)
-private String foto;
-
-@NotNull
-private String tipo = "Common";
-
 @NotNull
 @Email
 private String usuario;
@@ -41,9 +35,36 @@ private String usuario;
 @Size(min = 5)
 private String senha;
 
+@Size(max = 5000)
+private String foto;
+
+@NotNull
+private String tipo = "common";
+
+
+
 @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 @JsonIgnoreProperties("usuario")
 private List<Postagem> postagem;
+
+
+
+public Usuario(Long id, String nome,String usuario, String senha, String foto, String tipo) {
+	super();
+	this.id = id;
+	this.nome = nome;
+	this.usuario = usuario;
+	this.senha = senha;
+	this.foto = foto;
+	this.tipo = tipo;
+	
+}
+
+
+
+public Usuario() {
+	super();
+}
 
 
 
